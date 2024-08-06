@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <title>Kramer Ventures - Galaxy</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            background-color: #000;
+            height: 100vh;
+            background: #000510;
             overflow: hidden;
         }
         .stars {
@@ -25,60 +21,50 @@
         }
         .star {
             position: absolute;
-            background-color: #fff;
+            background: white;
             border-radius: 50%;
-            animation: twinkle 2s infinite;
+            opacity: 0.7;
+            animation: twinkle 6s infinite ease-in-out;
         }
         @keyframes twinkle {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+            25% { opacity: 1; transform: scale(1.2) rotate(90deg); }
+            50% { opacity: 0.5; transform: scale(0.8) rotate(180deg); }
+            75% { opacity: 0.9; transform: scale(1.1) rotate(270deg); }
         }
-        h1 {
-            font-size: 6rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            background: linear-gradient(45deg, #fff, #f0f0f0, #e0e0e0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3);
-            animation: subtle-move 3s ease-in-out infinite alternate;
+        .coming-soon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Arial, sans-serif;
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
             text-align: center;
-            z-index: 1;
-        }
-        @keyframes subtle-move {
-            from {
-                transform: translateY(-5px);
-            }
-            to {
-                transform: translateY(5px);
-            }
-        }
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 4rem;
-            }
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <h1>Coming Soon</h1>
+    <div class="stars" id="starfield"></div>
+    <div class="coming-soon">COMING SOON</div>
 
     <script>
         function createStars() {
-            const stars = document.querySelector('.stars');
-            const count = 200;
+            const starfield = document.getElementById('starfield');
+            const numStars = 200;
 
-            for (let i = 0; i < count; i++) {
+            for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
-                star.classList.add('star');
-                star.style.width = `${Math.random() * 3}px`;
-                star.style.height = star.style.width;
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
                 star.style.left = `${Math.random() * 100}%`;
                 star.style.top = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 2}s`;
-                stars.appendChild(star);
+                star.style.animationDelay = `${Math.random() * 6}s`;
+                starfield.appendChild(star);
             }
         }
 
