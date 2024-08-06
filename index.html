@@ -12,15 +12,77 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #000;
+            overflow: hidden;
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
         h1 {
-            font-size: 3rem;
-            color: #333;
+            font-size: 6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #fff, #f0f0f0, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: subtle-move 3s ease-in-out infinite alternate;
+            text-align: center;
+            z-index: 1;
+        }
+        @keyframes subtle-move {
+            from {
+                transform: translateY(-5px);
+            }
+            to {
+                transform: translateY(5px);
+            }
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="stars"></div>
     <h1>Coming Soon</h1>
+
+    <script>
+        function createStars() {
+            const stars = document.querySelector('.stars');
+            const count = 200;
+
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                stars.appendChild(star);
+            }
+        }
+
+        createStars();
+    </script>
 </body>
 </html>
