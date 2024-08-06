@@ -15,34 +15,6 @@
             font-weight: bold;
             color: white;
         }
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.7;
-            animation: twinkle 6s infinite ease-in-out, move 60s infinite linear;
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
-            25% { opacity: 1; transform: scale(1.2) rotate(90deg); }
-            50% { opacity: 0.5; transform: scale(0.8) rotate(180deg); }
-            75% { opacity: 0.9; transform: scale(1.1) rotate(270deg); }
-        }
-        @keyframes move {
-            0% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(10vh) translateX(5vw); }
-            50% { transform: translateY(0) translateX(10vw); }
-            75% { transform: translateY(-10vh) translateX(5vw); }
-            100% { transform: translateY(0) translateX(0); }
-        }
 
         .coming-soon {
             position: absolute;
@@ -55,40 +27,17 @@
             color: white;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             text-transform: uppercase;
-            white-space: nowrap; /* Add this line */
+            white-space: nowrap;
         }
 
-        /* Add this media query for mobile devices */
         @media (max-width: 768px) {
             .coming-soon {
-                font-size: 24px; /* Reduce font size for mobile */
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="stars" id="starfield"></div>
     <div class="coming-soon">COMING SOON</div>
-
-    <script>
-        function createStars() {
-            const starfield = document.getElementById('starfield');
-            const numStars = 200;
-
-            for (let i = 0; i < numStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 2 + 1;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 6}s, 0s`;
-                starfield.appendChild(star);
-            }
-        }
-
-        createStars();
-    </script>
 </body>
 </html>
