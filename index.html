@@ -55,6 +55,14 @@
             color: white;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             text-transform: uppercase;
+            white-space: nowrap; /* Add this line */
+        }
+
+        /* Add this media query for mobile devices */
+        @media (max-width: 768px) {
+            .coming-soon {
+                font-size: 24px; /* Reduce font size for mobile */
+            }
         }
     </style>
 </head>
